@@ -1,0 +1,42 @@
+[
+  {
+    "question": "How can I design an architecture that efficiently manages multiple coding agents working in parallel on different tasks?",
+    "eval": "EXTRACTION_FAILURE"
+  },
+  {
+    "question": "What are the best practices for handling tool dependencies and versioning in a coding agent environment?",
+    "eval": "EXTRACTION_FAILURE"
+  },
+  {
+    "question": "How do I manage context window limits when using large language models in coding agents to ensure complete and relevant information processing?",
+    "eval": "EXTRACTION_FAILURE"
+  },
+  {
+    "question": "What permission models should be implemented to ensure that coding agents operate securely and with the least necessary privileges?",
+    "eval": "RETRIEVAL_FAILURE"
+  },
+  {
+    "question": "How can Abstract Syntax Tree (AST) parsing be optimized for real-time performance in coding agents?",
+    "eval": "EXTRACTION_FAILURE"
+  },
+  {
+    "question": "What strategies can be employed for Multi-Channel Protocol (MCP) routing to ensure seamless communication between different coding agents and components?",
+    "eval": "RETRIEVAL_FAILURE"
+  },
+  {
+    "question": "How can I integrate external APIs and libraries into coding agents while ensuring compatibility and reducing latency?",
+    "eval": "EXTRACTION_FAILURE"
+  },
+  {
+    "question": "What are the considerations for state management and data persistence in the architecture of coding agents?",
+    "eval": "EXTRACTION_FAILURE"
+  },
+  {
+    "question": "How do you handle error detection and correction in the outputs of coding agents, especially when dealing with complex codebases?",
+    "eval": "RETRIEVAL_FAILURE"
+  },
+  {
+    "question": "What methods can be used to effectively test and validate the functionality of individual coding agents before deployment?",
+    "eval": "EXTRACTION_FAILURE"
+  }
+]
