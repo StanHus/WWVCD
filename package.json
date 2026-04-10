@@ -1,10 +1,10 @@
 {
   "name": "wwvcd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "What Would Vin Claudel Do? A database of 3,185 clean-room AI agent patterns and prompt engineering insights.",
   "main": "bin/wwvcd.js",
   "bin": {
-    "wwvcd": "./bin/wwvcd.js"
+    "wwvcd": "bin/wwvcd.js"
   },
   "scripts": {
     "test": "node bin/wwvcd.js --help"
@@ -21,6 +21,6 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/StanHus/WWVCD.git"
+    "url": "git+https://github.com/StanHus/WWVCD.git"
   }
 }
