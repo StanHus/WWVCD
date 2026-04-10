@@ -3,166 +3,126 @@
 const fs = require('fs');
 const path = require('path');
 
-// ANSI Colors
-const colors = {
-    reset: '\x1b[0m',
-    bold: '\x1b[1m',
-    dim: '\x1b[2m',
-    red: '\x1b[31m',
-    green: '\x1b[32m',
-    yellow: '\x1b[33m',
-    blue: '\x1b[34m',
-    magenta: '\x1b[35m',
-    cyan: '\x1b[36m',
-};
-
-const STOP_WORDS = new Set([
-    'how', 'to', 'do', 'i', 'in', 'the', 'a', 'an', 'is', 'are', 'for', 'of', 'on', 
-    'with', 'what', 'why', 'can', 'does', 'we', 'make', 'stop', 'prevent', 'get'
-]);
-
 // Semantic tag mapping to expand queries
 const tagSynonyms = {
-    'prompt': ['prompt', 'prompts', 'instruction', 'instructions', 'template', 'system'],
+    'hallucination': ['hallucinat', 'fabricat', 'false claim', 'invent', 'plausib', 'lie', 'grounding'],
+    'evaluation': ['eval', 'verif', 'judge', 'assess', 'score', 'check', 'test', 'metric', 'benchmark'],
+    'prompt': ['instruct', 'sysprompt', 'system prompt', 'context'],
+    'tool': ['function', 'hook', 'action', 'call'],
+    'security': ['auth', 'permission', 'token', 'key', 'bypass', 'safet', 'sandbox'],
+    'performance': ['fast-path', 'optimiz', 'perform', 'latency', 'cache'],
     'architecture': ['architecture', 'design', 'structure', 'system', 'component', 'module'],
-    'evaluation': ['eval', 'evaluation', 'test', 'testing', 'metric', 'benchmark'],
-    'security': ['security', 'auth', 'token', 'permission', 'safe', 'safety', 'sandbox'],
-    'performance': ['performance', 'speed', 'latency', 'optimize', 'optimization', 'cache', 'caching'],
-    'agent': ['agent', 'bot', 'assistant', 'ai', 'model', 'llm', 'gpt', 'claude', 'subagent'],
-    'verification': ['verify', 'verification', 'validate', 'validation', 'check', 'verifier'],
-    'hallucination': ['hallucination', 'fabricate', 'fabrication', 'grounding', 'ground'],
-    'tools': ['tool', 'tools', 'function', 'functions', 'api', 'call', 'mcp'],
-    'context': ['context', 'window', 'memory', 'history', 'message'],
-    'rag': ['rag', 'retrieval', 'search', 'vector', 'embedding'],
-    'pipeline': ['pipeline', 'workflow', 'chain', 'sequence', 'step']
+    'agent': ['agent', 'bot', 'assistant', 'subagent']
 };
 
-function printUsage() {
-    console.log(`\n${colors.cyan}${colors.bold}WWVCD (What Would Vanilla Claude Do?)${colors.reset}`);
-    console.log(`${colors.dim}Deep-dive into Claude Code architectural patterns.\n${colors.reset}`);
-    console.log(`${colors.bold}Usage:${colors.reset}`);
-    console.log(`  wwvcd <search_query>\n`);
-    console.log(`${colors.bold}Examples:${colors.reset}`);
-    console.log(`  wwvcd "how to stop hallucination"`);
-    console.log(`  wwvcd "mcp tools verification"\n`);
-}
-
-function expandQuery(query) {
-    const words = query.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/);
-    const expanded = new Set();
-    
-    for (const word of words) {
-        if (!word || STOP_WORDS.has(word)) continue;
-        
-        expanded.add(word);
-        for (const [tag, synonyms] of Object.entries(tagSynonyms)) {
-            if (synonyms.includes(word)) {
-                expanded.add(tag);
-                synonyms.forEach(s => expanded.add(s));
-            }
-        }
-    }
-    return Array.from(expanded);
-}
-
-function calculateScore(finding, queryTerms) {
-    let score = 0;
-    const tags = finding.tags || [];
-    const titleLower = (finding.title || "").toLowerCase();
-    const bodyLower = ((finding.finding || "") + " " + (finding.raw_detail || "")).toLowerCase();
-    
-    for (const term of queryTerms) {
-        // Exact tag match: highest signal
-        if (tags.includes(term)) {
-            score += 10;
-        }
-        
-        // Use regex for whole-word boundary matching to prevent "to" matching "auto"
-        try {
-            const regex = new RegExp(`\\b${term}\\b`, 'i');
-            
-            // Title match
-            if (regex.test(titleLower)) {
-                score += 5;
-            }
-            
-            // Body text match
-            if (regex.test(bodyLower)) {
-                score += 1;
-            }
-        } catch(e) {
-            // Ignore regex errors for weird terms
-        }
-    }
-    
-    return score;
-}
+const stopWords = new Set(['how', 'do', 'i', 'stop', 'my', 'from', 'the', 'a', 'an', 'to', 'in', 'on', 'with', 'is', 'are', 'and', 'of', 'for', '--yes', '-y', 'what', 'would', 'vin', 'claudel', 'claude']);
 
 function main() {
     const args = process.argv.slice(2);
-    if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
-        printUsage();
-        process.exit(args.length === 0 ? 1 : 0);
+    if (args.length === 0) {
+        console.error('Usage: wwvcd <search_query>');
+        process.exit(1);
     }
     
-    const query = args.join(' ');
-    console.log(`\n${colors.cyan}🔍 Semantic Search: ${colors.bold}"${query}"${colors.reset}\n`);
+    // Clean query
+    const rawQuery = args.join(' ').toLowerCase().replace(/[^\w\s-]/g, '');
+    const words = rawQuery.split(/\s+/).filter(w => w.length > 2 && !stopWords.has(w));
     
+    // Expand query with heavy weights for specific concepts
+    const activeConcepts = new Set();
+    const searchTerms = new Set(words);
+    
+    words.forEach(word => {
+        Object.entries(tagSynonyms).forEach(([concept, synonyms]) => {
+            if (concept.includes(word) || synonyms.some(s => word.includes(s) || s.includes(word))) {
+                activeConcepts.add(concept);
+                synonyms.forEach(s => searchTerms.add(s));
+                searchTerms.add(concept);
+            }
+        });
+    });
+
+    console.log(`\n\x1b[1m🔍 Semantic Search:\x1b[0m "${args.join(' ')}"`);
+    console.log(`\x1b[90mExtracted Concepts: [${Array.from(activeConcepts).join(', ')}]\x1b[0m\n`);
+    
+    // Read the database
     const dbPath = path.join(__dirname, '../patterns/database/tagged_findings.json');
     if (!fs.existsSync(dbPath)) {
-        console.error(`${colors.red}❌ Error: Database not found at ${dbPath}${colors.reset}`);
-        console.error(`${colors.dim}Please ensure the finding pipeline has run and generated the tagged database.${colors.reset}\n`);
+        console.error('Database not found. Please ensure WWVCD is installed correctly.');
         process.exit(1);
     }
     
-    let findings = [];
-    try {
-        findings = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
-    } catch (e) {
-        console.error(`${colors.red}❌ Error: Failed to parse database JSON.${colors.reset}`);
-        console.error(e.message);
-        process.exit(1);
-    }
-
-    const queryTerms = expandQuery(query);
-    if (queryTerms.length === 0) {
-        console.log(`${colors.yellow}⚠️  No meaningful search terms extracted from query. Try adding more specific keywords.${colors.reset}\n`);
-        return;
-    }
+    const findings = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
     
-    console.log(`${colors.dim}Active terms: [${queryTerms.join(', ')}]${colors.reset}\n`);
-    
-    // Score and sort
-    const scoredFindings = findings.map(f => ({
-        finding: f,
-        score: calculateScore(f, queryTerms)
-    })).filter(f => f.score > 0);
-    
-    scoredFindings.sort((a, b) => b.score - a.score);
-    
-    const topResults = scoredFindings.slice(0, 5); // Focus on top 5 for readability
-    
-    if (topResults.length === 0) {
-        console.log(`${colors.yellow}❌ No architectural patterns found matching your query.${colors.reset}\n`);
-        return;
-    }
-    
-    console.log(`${colors.green}${colors.bold}🎯 Top ${topResults.length} Architectural Patterns:${colors.reset}\n`);
-    topResults.forEach((result, i) => {
-        const f = result.finding;
-        console.log(`${colors.bold}${colors.magenta}${i + 1}. ${f.title || 'Untitled'}${colors.reset} ${colors.dim}(Score: ${result.score})${colors.reset}`);
-        console.log(`   ${colors.cyan}Pillar:${colors.reset} ${f.pillar || 'Unknown'}`);
-        if (f.tags && f.tags.length > 0) {
-            console.log(`   ${colors.yellow}Tags:${colors.reset} ${f.tags.join(', ')}`);
-        }
-        if (f.source_file) {
-            console.log(`   ${colors.blue}Source:${colors.reset} patterns/${f.source_file}`);
+    // Score findings
+    const scoredFindings = findings.map(f => {
+        let score = 0;
+        const text = (f.finding || "") + " " + (f.raw_detail || "") + " " + (f.title || "");
+        const textLower = text.toLowerCase();
+        const tagsLower = (f.tags || []).map(t => t.toLowerCase());
+        
+        // Massive boost for core concepts that the user explicitly searched for
+        activeConcepts.forEach(concept => {
+            // If the finding's tags exactly match the concept, huge boost
+            if (tagsLower.includes(concept)) score += 50;
+            
+            // If the finding's text contains the concept or its synonyms, strong boost
+            tagSynonyms[concept].forEach(syn => {
+                if (textLower.includes(syn)) score += 20;
+            });
+        });
+        
+        // Minor boost for raw word hits
+        words.forEach(word => {
+            if (textLower.includes(word)) score += 5;
+            if (tagsLower.includes(word)) score += 10;
+        });
+        
+        // Penalty for generic Claude/Model stuff if we are looking for specific behaviors like hallucinations
+        if (activeConcepts.has('hallucination') || activeConcepts.has('evaluation')) {
+            if (textLower.includes('claude-sonnet') || textLower.includes('claude-opus')) {
+                score -= 30; 
+            }
         }
         
-        // Truncate detail to keep CLI clean
-        let detail = f.finding || f.raw_detail || '';
-        if (detail.length > 200) detail = detail.substring(0, 197) + '...';
-        console.log(`   ${colors.reset}${detail}\n`);
+        return { finding: f, score };
+    }).filter(f => f.score > 20); // higher threshold
+    
+    scoredFindings.sort((a, b) => b.score - a.score);
+    const topResults = scoredFindings.slice(0, 5);
+    
+    // Print Structural Deep Dives if relevant
+    if (activeConcepts.has('hallucination') || activeConcepts.has('evaluation') || activeConcepts.has('prompt')) {
+        console.log(`\x1b[35m\x1b[1m========================================\x1b[0m`);
+        console.log(`\x1b[35m\x1b[1m🧠 CORE STRUCTURAL STRATEGY REQUIRED\x1b[0m`);
+        console.log(`\x1b[35m\x1b[1m========================================\x1b[0m`);
+        if (activeConcepts.has('hallucination')) {
+            console.log(`\x1b[33mPattern 01: Enumerate Rationalizations\x1b[0m`);
+            console.log(`Explicitly list the internal monologues and excuses the model will use to justify skipping work or inventing facts, and forbid them directly in the prompt.\n`);
+            console.log(`\x1b[33mPattern 02: Structural Evidence\x1b[0m`);
+            console.log(`Force the model to provide structural proof (e.g. an exact verbatim Source Quote block). A claim without structural evidence is automatically a FABRICATION.\n`);
+        }
+        if (activeConcepts.has('evaluation')) {
+            console.log(`\x1b[33mPattern 03: The Read-Only Judge\x1b[0m`);
+            console.log(`Evaluation agents MUST be architecturally decoupled from generation. Remove their ability to write or edit files. If they can fix the code, they will be seduced by plausibility and hallucinate fixes.\n`);
+        }
+    }
+    
+    if (topResults.length === 0) {
+        console.log('❌ No results found. Try a different keyword.');
+        return;
+    }
+    
+    console.log(`\x1b[36m\x1b[1m🎯 Top ${topResults.length} Architectural Patterns:\x1b[0m\n`);
+    topResults.forEach((result, i) => {
+        const f = result.finding;
+        console.log(`\x1b[1m${i + 1}. ${f.title || 'Untitled'}\x1b[0m \x1b[90m(Score: ${result.score})\x1b[0m`);
+        console.log(`   \x1b[34mTags:\x1b[0m \x1b[90m${(f.tags || []).join(', ')}\x1b[0m`);
+        
+        const detail = f.finding || f.raw_detail || '';
+        // Word wrap detail
+        const wrapped = detail.replace(/(?![^\n]{1,80}$)([^\n]{1,80})\s/g, '$1\n   ');
+        console.log(`   ${wrapped}\n`);
     });
 }
 
