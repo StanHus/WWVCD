@@ -9,10 +9,12 @@ const tagSynonyms = {
     'evaluation': ['eval', 'verif', 'judge', 'assess', 'score', 'check', 'test', 'metric', 'benchmark'],
     'prompt': ['instruct', 'sysprompt', 'system prompt', 'context'],
     'tool': ['function', 'hook', 'action', 'call'],
-    'security': ['auth', 'permission', 'token', 'key', 'bypass', 'safet', 'sandbox'],
-    'performance': ['fast-path', 'optimiz', 'perform', 'latency', 'cache'],
+    'security': ['auth', 'permission', 'token', 'key', 'bypass', 'safet', 'sandbox', 'model'],
+    'performance': ['fast-path', 'optimiz', 'perform', 'latency', 'cache', 'speed'],
     'architecture': ['architecture', 'design', 'structure', 'system', 'component', 'module'],
-    'agent': ['agent', 'bot', 'assistant', 'subagent']
+    'agent': ['agent', 'bot', 'assistant', 'subagent', 'parallel'],
+    'mcp': ['mcp', 'model context protocol', 'routing', 'strateg', 'server'],
+    'state': ['state', 'management', 'store']
 };
 
 const stopWords = new Set(['how', 'do', 'i', 'stop', 'my', 'from', 'the', 'a', 'an', 'to', 'in', 'on', 'with', 'is', 'are', 'and', 'of', 'for', '--yes', '-y', 'what', 'would', 'vin', 'claudel', 'claude']);
