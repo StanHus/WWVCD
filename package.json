@@ -1,6 +1,6 @@
 {
   "name": "wwvcd",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "What Would Vin Claudel Do? A database of 3,185 clean-room AI agent patterns and prompt engineering insights.",
   "main": "bin/wwvcd.js",
   "bin": {
