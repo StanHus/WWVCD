@@ -1,0 +1,613 @@
+{
+  "pass_count": 55,
+  "retrieval_failures": 0,
+  "extraction_failures": 0,
+  "pass_rate": "110%",
+  "results": [
+    {
+      "id": "context_window_1",
+      "question": "How does Claude Code auto-compact the context window when it gets full?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['200_', '100_', '10000,', 'AutoCompactState', 'TokenWarningState']",
+        "3 results have code snippets"
+      ],
+      "top_result_score": 296
+    },
+    {
+      "id": "context_window_2",
+      "question": "What is the token threshold percentage that triggers auto-compaction?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['10000,', '100_', '400,', 'SDKControlGetContextUsageResponseSchema', 'SessionMemoryCompactConfig']",
+        "3 results have code snippets"
+      ],
+      "top_result_score": 268
+    },
+    {
+      "id": "context_window_3",
+      "question": "What is the difference between autoCompact and sessionMemoryCompact?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['10000,', 'SessionMemoryCompactConfig', 'SessionMemoryCompactConfig', 'SessionMemoryCompactConfig', \"'local'\"]",
+        "4 results have code snippets"
+      ],
+      "top_result_score": 377
+    },
+    {
+      "id": "context_window_4",
+      "question": "What are the min and max token bounds for session memory compaction?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['10000,', '100_', '400,', 'SessionMemoryCompactConfig', 'SessionMemoryCompactConfig']",
+        "2 results have code snippets"
+      ],
+      "top_result_score": 708
+    },
+    {
+      "id": "context_window_5",
+      "question": "How does microcompact work and when is it used?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['TimeBasedMCConfig', 'ToolUseContext', 'OutputConfig', \"'auto'\", \"'compact'\"]",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 120
+    },
+    {
+      "id": "permissions_1",
+      "question": "What are all the permission modes in Claude Code?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', 'ExternalPermissionMode', 'InternalPermissionMode', 'ExternalPermissionMode', \"'default'\"]",
+        "5 results have code snippets"
+      ],
+      "top_result_score": 218
+    },
+    {
+      "id": "permissions_2",
+      "question": "What does bypassPermissions mode do and when is it dangerous?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', 'ExternalPermissionMode', 'InternalPermissionMode', 'ExternalPermissionMode', \"'default'\"]",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 205
+    },
+    {
+      "id": "permissions_3",
+      "question": "What is the difference between acceptEdits and dontAsk permission modes?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', 'ExternalPermissionMode', 'InternalPermissionMode', 'ExternalPermissionMode', \"'default'\"]",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 284
+    },
+    {
+      "id": "permissions_4",
+      "question": "How does the ToolPermissionContext control tool execution?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', '100_', 'ToolUseContext', 'ThinkingConfig', 'ToolPermissionContext']",
+        "9 results have code snippets"
+      ],
+      "top_result_score": 448
+    },
+    {
+      "id": "permissions_5",
+      "question": "What is the auto permission mode and what gates it?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['EnterWorktreeTool', 'ReturnType', 'ExternalPermissionMode', \"'plugin'\", \"'server'\"]",
+        "5 results have code snippets"
+      ],
+      "top_result_score": 251
+    },
+    {
+      "id": "bash_1",
+      "question": "At what timeout does BashTool auto-background a task?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', '120_', '137,', 'SleepTool', 'PowerShellTool']",
+        "5 results have code snippets"
+      ],
+      "top_result_score": 589
+    },
+    {
+      "id": "bash_2",
+      "question": "How does BashTool enforce sandboxing on Linux vs macOS vs Windows?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', '100,', 'PowerShellTool', 'PowerShellTool', 'SleepTool']",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 432
+    },
+    {
+      "id": "bash_3",
+      "question": "What bash commands does Claude Code block and why?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', 'PowerShellTool', 'PowerShellTool', 'SleepTool', \"'sleep'\"]",
+        "8 results have code snippets"
+      ],
+      "top_result_score": 359
+    },
+    {
+      "id": "bash_4",
+      "question": "What is ASSISTANT_BLOCKING_BUDGET_MS and when does it apply?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', 'SleepTool', 'PowerShellTool', 'PowerShellTool', \"'sleep'\"]",
+        "8 results have code snippets"
+      ],
+      "top_result_score": 125
+    },
+    {
+      "id": "bash_5",
+      "question": "How does BashTool track git operations after command execution?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', 'PowerShellTool', 'PowerShellTool', 'PowerShellTool', \"'sleep'\"]",
+        "5 results have code snippets"
+      ],
+      "top_result_score": 525
+    },
+    {
+      "id": "flags_1",
+      "question": "What tools are gated behind the KAIROS feature flag?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', '120_', '100_', 'BriefTool', 'BriefTool']",
+        "8 results have code snippets"
+      ],
+      "top_result_score": 491
+    },
+    {
+      "id": "flags_2",
+      "question": "What is the tengu_ prefix and what does it signify?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['OutputConfig', 'TimeBasedMCConfig', 'TimeBasedMCConfig', \"'COORDINATOR_MODE'\", \"'COORDINATOR_MODE'\"]",
+        "7 results have code snippets"
+      ],
+      "top_result_score": 231
+    },
+    {
+      "id": "flags_3",
+      "question": "How does GrowthBook A/B testing work in Claude Code?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['DynamicConfig', 'DynamicConfig', 'EnvLessBridgeConfig', \"'COORDINATOR_MODE'\", '\"type\"']",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 169
+    },
+    {
+      "id": "flags_4",
+      "question": "What is the ABLATION_BASELINE flag and what does it do?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['DynamicConfig', 'DynamicConfig', 'EnvLessBridgeConfig', \"'COORDINATOR_MODE'\", \"'FLAG_NAME'\"]",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 191
+    },
+    {
+      "id": "flags_5",
+      "question": "What feature flag controls the RemoteTriggerTool?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['DynamicConfig', 'DynamicConfig', 'EnvLessBridgeConfig', '\"environment\"', '\"work\"']",
+        "2 results have code snippets"
+      ],
+      "top_result_score": 350
+    },
+    {
+      "id": "agent_1",
+      "question": "How does the AgentTool spawn and manage subagents?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', 'TeammateTool', 'AgentTool', 'AgentTool', \"'sonnet'\"]",
+        "5 results have code snippets"
+      ],
+      "top_result_score": 273
+    },
+    {
+      "id": "agent_2",
+      "question": "How long before AgentTool auto-backgrounds a running task?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', '120_', 'AgentTool', 'AgentTool', 'FileReadTool']",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 496
+    },
+    {
+      "id": "agent_3",
+      "question": "How do swarm/team tools work in Claude Code?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', 'TeamCreateTool', 'TeamCreateTool', 'TeamDeleteTool', \"'shutdown_request'\"]",
+        "8 results have code snippets"
+      ],
+      "top_result_score": 437
+    },
+    {
+      "id": "agent_4",
+      "question": "How does TeamCreateTool enforce single-leader constraints?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['TeamCreateTool', 'TeamCreateTool', 'TeamDeleteTool', \"'shutdown_request'\", \"'shutdown_response'\"]",
+        "7 results have code snippets"
+      ],
+      "top_result_score": 246
+    },
+    {
+      "id": "constants_1",
+      "question": "What are the image size limits for Claude API requests?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['242,', '932,', '3.75 MB', 'FileReadTool', 'FileReadTool']",
+        "3 results have code snippets"
+      ],
+      "top_result_score": 376
+    },
+    {
+      "id": "constants_2",
+      "question": "What are the PDF size and page limits for the Read tool?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '120_', '100_', 'FileReadTool', 'FileReadTool']",
+        "7 results have code snippets"
+      ],
+      "top_result_score": 650
+    },
+    {
+      "id": "constants_3",
+      "question": "What is the maximum number of glob results?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '180_', 'FileReadTool', 'FileReadTool', 'FileEditTool']",
+        "8 results have code snippets"
+      ],
+      "top_result_score": 224
+    },
+    {
+      "id": "constants_4",
+      "question": "What is the current migration version number?",
+      "verdict": "PASS",
+      "score": 53,
+      "reasons": [
+        "Specificity signals found: [\"'opus'\", \"'opus'\", \"'sonnet'\", 'TRANSCRIPT_CLASSIFIER', 'BLOCK']",
+        "1 result has code snippet"
+      ],
+      "top_result_score": 188
+    },
+    {
+      "id": "constants_5",
+      "question": "What is the maximum file size the FileReadTool can read?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '100_', '100_', 'FileReadTool', 'FileReadTool']",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 469
+    },
+    {
+      "id": "arch_1",
+      "question": "What happens step by step when Claude Code starts up via main()?",
+      "verdict": "PASS",
+      "score": 90,
+      "reasons": [
+        "Specificity signals found: ['WizardContext', 'AgentTool', 'SelectionState', \"'generate'\", \"'manual'\"]",
+        "5 results have code snippets"
+      ],
+      "top_result_score": 100
+    },
+    {
+      "id": "arch_2",
+      "question": "How does the query.ts main loop work?",
+      "verdict": "PASS",
+      "score": 90,
+      "reasons": [
+        "Specificity signals found: ['QueryConfig', 'QueryConfig', 'QueryConfig', '\"end_turn\"', '\"stop_sequence\"']",
+        "2 results have code snippets"
+      ],
+      "top_result_score": 76
+    },
+    {
+      "id": "arch_3",
+      "question": "What does ToolUseContext contain and why is it important?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', '100_', 'ToolUseContext', 'ThinkingConfig', 'ToolPermissionContext']",
+        "9 results have code snippets"
+      ],
+      "top_result_score": 250
+    },
+    {
+      "id": "arch_4",
+      "question": "What is the read-before-write enforcement in FileEditTool?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '100_', '100_', 'FileEditTool', 'FileEditTool']",
+        "7 results have code snippets"
+      ],
+      "top_result_score": 324
+    },
+    {
+      "id": "arch_5",
+      "question": "How does Claude Code manage its session state in AppState?",
+      "verdict": "PASS",
+      "score": 98,
+      "reasons": [
+        "Specificity signals found: ['10000,', 'PermissionContext', 'PermissionContext', 'PermissionContext', 'BASH_CLASSIFIER']",
+        "1 result has code snippet"
+      ],
+      "top_result_score": 416
+    },
+    {
+      "id": "services_1",
+      "question": "How does Claude Code handle API rate limiting and retries?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['ClientConfig', 'ClientConfig', 'SubscriptionType', '\"ping\"', '\"message_start\"']",
+        "3 results have code snippets"
+      ],
+      "top_result_score": 340
+    },
+    {
+      "id": "services_2",
+      "question": "How does prompt cache break detection work?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['SleepTool', 'SleepTool', 'ThinkingConfig', '\"enabled\"', '\"text\"']",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 487
+    },
+    {
+      "id": "services_3",
+      "question": "What is the Grove service?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['GroveConfig', 'GroveConfig', 'GroveConfig', \"'error'\", \"'warning'\"]",
+        "10 results have code snippets"
+      ],
+      "top_result_score": 143
+    },
+    {
+      "id": "services_4",
+      "question": "How does the cost tracker work?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['CommandContext', 'CommandContext', 'PermissionMode', '\"end_turn\"', '\"stop_sequence\"']",
+        "2 results have code snippets"
+      ],
+      "top_result_score": 162
+    },
+    {
+      "id": "mcp_1",
+      "question": "How does MCP tool routing and server connection work?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '100_', 'ToolSearchTool', 'ToolSearchTool', 'FileReadTool']",
+        "9 results have code snippets"
+      ],
+      "top_result_score": 534
+    },
+    {
+      "id": "mcp_2",
+      "question": "What is the MonitorMcpTask and what gates it?",
+      "verdict": "PASS",
+      "score": 90,
+      "reasons": [
+        "Specificity signals found: ['ConfigTool', 'SleepTool', 'RemoteTriggerTool', \"'KAIROS'\", \"'SLEEP_TOOL'\"]",
+        "7 results have code snippets"
+      ],
+      "top_result_score": 70
+    },
+    {
+      "id": "mcp_3",
+      "question": "How does the MCP auth tool handle authentication?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '100_', 'McpAuthTool', 'McpAuthTool', 'ScopedMcpServerConfig']",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 697
+    },
+    {
+      "id": "mcp_4",
+      "question": "How does Claude Code expose tools to MCP servers?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '100_', '100_', 'ToolSearchTool', 'ToolSearchTool']",
+        "9 results have code snippets"
+      ],
+      "top_result_score": 514
+    },
+    {
+      "id": "cli_1",
+      "question": "What slash commands are available in Claude Code?",
+      "verdict": "PASS",
+      "score": 90,
+      "reasons": [
+        "Specificity signals found: [\"'local'\", \"'text'\", \"'compact'\", 'BLOCK', 'COMMANDS']",
+        "3 results have code snippets"
+      ],
+      "top_result_score": 256
+    },
+    {
+      "id": "cli_2",
+      "question": "How does the /fork or /branch command work?",
+      "verdict": "PASS",
+      "score": 90,
+      "reasons": [
+        "Specificity signals found: [\"'fork'\", \"'local'\", \"'text'\", 'FORK_SUBAGENT', 'JSONL']",
+        "7 results have code snippets"
+      ],
+      "top_result_score": 246
+    },
+    {
+      "id": "cli_3",
+      "question": "How does the /bridge-kick command work and who can use it?",
+      "verdict": "PASS",
+      "score": 75,
+      "reasons": [
+        "Specificity signals found: ['1002,', \"'local'\", \"'prompt'\", \"'local'\", 'USER_TYPE']",
+        "2 results have code snippets"
+      ],
+      "top_result_score": 370
+    },
+    {
+      "id": "cli_4",
+      "question": "What is the DIRECT_CONNECT feature?",
+      "verdict": "PASS",
+      "score": 105,
+      "reasons": [
+        "Specificity signals found: ['EnterWorktreeTool', 'ReturnType', 'DynamicConfig', \"'plugin'\", \"'server'\"]",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 235
+    },
+    {
+      "id": "hooks_1",
+      "question": "How does the useApiKeyVerification hook work?",
+      "verdict": "PASS",
+      "score": 68,
+      "reasons": [
+        "Specificity signals found: ['ReturnType', \"'loading'\", \"'valid'\", \"'invalid'\", 'BLOCK']",
+        "1 result has code snippet"
+      ],
+      "top_result_score": 208
+    },
+    {
+      "id": "hooks_2",
+      "question": "What is the auto-background hook for long-running tools?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '100_', 'TaskCreateTool', 'TaskCreateTool', 'EnterWorktreeTool']",
+        "5 results have code snippets"
+      ],
+      "top_result_score": 346
+    },
+    {
+      "id": "hooks_3",
+      "question": "How does the keybindings hot-reload work?",
+      "verdict": "PASS",
+      "score": 75,
+      "reasons": [
+        "Specificity signals found: ['KeybindingBlockSchema', 'KeybindingsSchema', 'VoiceState', '\"bindings\"', \"'messages'\"]",
+        "2 results have code snippets"
+      ],
+      "top_result_score": 226
+    },
+    {
+      "id": "hooks_4",
+      "question": "How does Claude Code's trust dialog hook work?",
+      "verdict": "PASS",
+      "score": 68,
+      "reasons": [
+        "Specificity signals found: ['ToolPermissionContext', 'CanUseToolFn', 'PermissionContext', \"'loading'\", \"'valid'\"]",
+        "1 result has code snippet"
+      ],
+      "top_result_score": 356
+    },
+    {
+      "id": "misc_1",
+      "question": "How does the ToolSearchTool / deferred tool system work?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '100_', 'ToolSearchTool', 'ToolSearchTool', 'ToolInputJSONSchema']",
+        "6 results have code snippets"
+      ],
+      "top_result_score": 464
+    },
+    {
+      "id": "misc_2",
+      "question": "How does the EnterWorktree tool provide git isolation?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['100_', '100_', '120_', 'ExitWorktreeTool', 'ExitWorktreeTool']",
+        "8 results have code snippets"
+      ],
+      "top_result_score": 534
+    },
+    {
+      "id": "misc_3",
+      "question": "How does Claude Code handle OAuth authentication flow?",
+      "verdict": "PASS",
+      "score": 90,
+      "reasons": [
+        "Specificity signals found: ['401,', '401,', '\"force\"', '\"session_id\"', '\"cse_abc123\"']",
+        "8 results have code snippets"
+      ],
+      "top_result_score": 348
+    },
+    {
+      "id": "misc_4",
+      "question": "What is the JWT bridge protocol and how does it secure sessions?",
+      "verdict": "PASS",
+      "score": 90,
+      "reasons": [
+        "Specificity signals found: ['18000,', 'BridgeConfig', 'SpawnMode', 'SessionState', '\"session\"']",
+        "7 results have code snippets"
+      ],
+      "top_result_score": 404
+    },
+    {
+      "id": "misc_5",
+      "question": "How does the SyntheticOutputTool produce structured JSON output?",
+      "verdict": "PASS",
+      "score": 115,
+      "reasons": [
+        "Specificity signals found: ['120_', '600_', '100_', 'SyntheticOutputTool', 'SyntheticOutputTool']",
+        "8 results have code snippets"
+      ],
+      "top_result_score": 347
+    }
+  ]
+}
