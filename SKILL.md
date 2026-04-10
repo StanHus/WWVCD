@@ -20,10 +20,10 @@ The insights are categorized into Markdown files under `patterns/database/`:
 
 When a user asks "what would vin claudel do for X", "wwvcd for Y", or "how do I improve Z":
 
-1. Identify the category of their problem (e.g., is it a prompting issue or a verification issue?).
-2. Search the relevant database file:
+1. Identify the topic of their problem (e.g., "verification", "system prompt", "tool boundaries").
+2. Run the included Node CLI tool to search the database:
    ```bash
-   grep -i "keyword" ~/.openclaw/workspace/skills/wwvcd/patterns/database/evaluation_insights.md -A 2 -B 2
+   node ~/.openclaw/workspace/skills/wwvcd/bin/wwvcd.js "verification"
    ```
 3. Read the relevant architectural files from `patterns/01-enumerate-rationalizations.md` etc. if a deep structural pattern applies.
 4. Synthesize the findings into a concrete, structural recommendation for the user. Do not just quote the insight—explain *how* to implement it in their system.

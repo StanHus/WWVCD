@@ -20,6 +20,14 @@ This repository contains zero proprietary source code. Instead, it provides the 
 
 ---
 
+**[ 📚 The Insight Database ](#-whats-inside)** | **[ 📦 Install via NPM ](#-npm-package)** | **[ 🛠 OpenClaw Skill ](#-openclaw-skill)** | **[ 🧠 Core Philosophy ](#-core-philosophy)**
+
+---
+
+> ⚠️ **Notice on ClawHub availability:** We are currently experiencing an authentication blockage deploying the skill to the ClawHub registry directly. We will update this notice once the native `clawhub install wwvcd` command is online. In the meantime, use the universal **NPM** package or manually install the **OpenClaw** skill via the fallback instructions below.
+
+---
+
 ## 📚 What's Inside
 
 ### 1. The Insight Database
@@ -37,17 +45,31 @@ Under `patterns/`, we have expanded the most critical findings into implementabl
 - `03-read-only-judge.md`: The architectural requirement of decoupling generation from evaluation.
 - `04-explicit-faithfulness.md`: Overriding RLHF "helpfulness" by defining honesty as the highest priority.
 
-### 3. The OpenClaw Skill
-This repository includes a native `SKILL.md` for the [OpenClaw](https://github.com/openclaw/openclaw) assistant ecosystem.
+---
+
+## 📦 NPM Package (Universal CLI)
+
+You can search the entire database of 3,185 insights globally from any terminal. This makes the database accessible to developers, AI agents like Cursor or Windsurf, and automation pipelines.
+
+You don't even need to install it permanently. Just run:
+
+```bash
+npx wwvcd "verification"
+```
+
+Or install it globally for instant access:
+
+```bash
+npm install -g wwvcd
+wwvcd "system prompt"
+```
+
+The CLI will recursively search the database and print out exactly how state-of-the-art agents handle that specific edge case.
 
 ---
 
-## 🛠 Usage
+## 🛠 OpenClaw Skill
 
-### As a Reference
-Browse the `patterns/database/` markdown files to understand how state-of-the-art agents handle specific edge cases, or read the deep-dives in `patterns/` to improve your own prompts.
-
-### As an OpenClaw Skill
 Allow your local AI assistant to automatically query this massive database and apply these advanced patterns to your own prompts and agent architectures.
 
 1. Clone this repository into your OpenClaw skills directory:
@@ -58,6 +80,8 @@ Allow your local AI assistant to automatically query this massive database and a
    - *"WWVCD: how do I improve this prompt?"*
    - *"What would Vin Claudel do for my document generator?"*
    - *"WWVCD for my evaluation agent."*
+
+---
 
 ## 🧠 Core Philosophy
 
