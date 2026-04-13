@@ -3,6 +3,8 @@
 </div>
 
 # WWVCD: What Would Vin Claudel Do?
+<p><a href="https://www.npmjs.com/package/wwvcd" rel="nofollow"><img src="https://camo.githubusercontent.com/cba6135c628b09e068592d88e73c6a4d416c7571c659b6629ba02b37d71e7aa5/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f77777663642e737667" alt="npm version" data-canonical-src="https://img.shields.io/npm/v/wwvcd.svg" style="max-width: 100%;"></a>
+<a href="https://www.npmjs.com/package/wwvcd" rel="nofollow"><img src="https://camo.githubusercontent.com/a46dca2b88d7d388efc0146d0479ce4c4dfbae8da38be90d7f6db23b5e18357c/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f646d2f77777663642e737667" alt="npm downloads" data-canonical-src="https://img.shields.io/npm/dm/wwvcd.svg" style="max-width: 100%;"></a></p>
 
 > A clean-room database of **1,166 deep technical architectural patterns** distilled from the source code of state-of-the-art AI coding assistants.
 
